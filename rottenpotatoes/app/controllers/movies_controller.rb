@@ -5,7 +5,11 @@ class MoviesController < ApplicationController
     @movie = Movie.find(id) # look up movie by unique ID
     # will render app/views/movies/show.<extension> by default
   end
-
+  def similar_directors
+    id = params[:id] # retrieve movie ID from URI route
+    @movie = Movie.find(id) # look up movie by unique ID
+    @similar_list = Movie.find_all_by_director(@movie.director)
+  end
   def index
     sort = params[:sort] || session[:sort]
     case sort

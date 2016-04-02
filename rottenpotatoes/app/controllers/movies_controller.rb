@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
       flash[:warning] = "'#{@movie.title}' has no director info"
       redirect_to '/movies'
     end
-    @similar_list = Movie.find_all_by_director(@movie.director)
+    @similar_list = @movie.find_all_by_director
     
   end
   def index
